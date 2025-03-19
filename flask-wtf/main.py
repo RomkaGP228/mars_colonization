@@ -15,12 +15,20 @@ class LoginForm(FlaskForm):
     remember_me = BooleanField('Запомнить меня')
     submit = SubmitField('Войти')
 
+params = {'head1': 'Миссия Колонизация Марса', 'head4': 'И на Марсе будут яблони цвести!'}
+
 
 @app.route("/<title>")
 @app.route("/index/<title>")
 def index(title):
-    params = {'head1': 'Миссия Колонизация Марса', 'head4': 'И на Марсе будут яблони цвести!'}
     return render_template("base.html", title=title, **params)
+
+
+@app.route("/training/<prof>")
+def training(prof):
+    print(prof)
+    return render_template("prof.html", **params, prof=prof)
+
 
 
 if __name__ == '__main__':
