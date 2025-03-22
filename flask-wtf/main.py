@@ -15,6 +15,7 @@ class LoginForm(FlaskForm):
     remember_me = BooleanField('Запомнить меня')
     submit = SubmitField('Войти')
 
+
 params = {'head1': 'Миссия Колонизация Марса', 'head4': 'И на Марсе будут яблони цвести!'}
 
 
@@ -28,7 +29,6 @@ def index(title):
 def training(prof):
     print(prof)
     return render_template("prof.html", **params, prof=prof)
-
 
 
 if __name__ == '__main__':
