@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html lang="en">
+{% extends "base.html" %}
+{% block content %}
+<div class>
+  <p>Фамилия: {{ surname }}</p>
+  <p>Имя: {{ name }}</p>
+  <p>Образование: {{ education }}</p>
+  <p>Профессия: {{ profession }}</p>
+  <p>Пол: {{ gender }}</p>
+  <p>Мотивация: {{ motivation }}</p>
+  <p>Готовы остаться на Марсе?: {{ ready }}</p>
+</div>
+{% endblock %}
