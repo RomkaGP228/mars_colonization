@@ -66,5 +66,12 @@ def distribution():
     return render_template("distribution.html", **props, **params)
 
 
+@app.route('/table/<gender>/<age>')
+def table_param(gender: str, age: int):
+    props = {'gender': gender, 'age': age, 'child_img_url': CHILD_IMG_URL, 'adult_img_url': ADULT_IMG_URL,
+             'style_url': url_for('static', filename='css/main.css')}
+    return render_template('table_param.html', **props)
+
+
 if __name__ == '__main__':
     app.run(port=8080, host='127.0.0.1')
