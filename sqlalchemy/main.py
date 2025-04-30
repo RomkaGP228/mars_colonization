@@ -1,17 +1,13 @@
-from data import db_session
+from data.db_session import create_session, global_init
+from data.users import User
 from data.jobs import Jobs
-import datetime
 
-db_session.global_init('db/database.db')
-session = db_session.create_session()
-
-job1 = Jobs()
-job1.team_leader = 1
-job1.job = 'deployment of residential modules 1 and 2'
-job1.work_size = 15
-job1.collaborators = '2, 3'
-start_date = datetime.datetime.now()
-job1.is_finished = False
-
-session.add(job1)
-session.commit()
+db_name = input()
+global_init(db_name)
+db_sess = create_session()
+jobs = db_sess.query(Jobs).all()
+colonists = db_sess.query(User).all()
+for colonist in colonists:
+    if colonist.address == 'module_1' and colonist.age < 21:
+        colonist.address = 'module_3'
+        db_sess.commit()
