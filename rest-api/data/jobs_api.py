@@ -31,3 +31,8 @@ def get_one_jobs(job_id):
             'job': jobs.to_dict()
         }
     )
+
+
+@blueprint.route('/api/jobs/<job_id>')
+def get_job_error(job_id: not int):
+    return jsonify({'error': 'Bad request'}), 401
