@@ -1,4 +1,5 @@
 from flask import Flask, url_for
+from os.path import join
 
 app = Flask(__name__)
 
@@ -185,6 +186,48 @@ def astronaut_selection():
     </html>
 
     """
+
+
+
+
+@app.route('/results/<nick>/<int:level>/<float:rating>')
+def results(nick: str, level: int, rating: int):
+    str_level = str(level)
+    str_rating = str(rating)
+    code = f"""<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Колонизация Марса</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ"
+      crossorigin="anonymous"
+    />
+  </head>
+  <body>
+    <div class="p-5">
+      <h1>Результат отбора</h1>
+      <h2>Претендент на участие в миссии %NICK%:</h2>
+      <div class="alert alert-success">Поздравляем!</div>
+      <ul class="list-group mb-3">
+        <li class="list-group-item"><b>Ваш уровень: %LEVEL%</b></li>
+        <li class="list-group-item">Ваш рейтинг: %RAITING%</li>
+      </ul>
+      <div class="alert alert-warning">Желаем удачи!</div>
+    </div>
+  </body>
+  <script
+    src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe"
+    crossorigin="anonymous"
+  ></script>
+</html>"""
+    return code.replace('%NICK%', nick).replace('%LEVEL%', str_level).replace('%RAITING%', str_rating)
+
 
 
 if __name__ == '__main__':
